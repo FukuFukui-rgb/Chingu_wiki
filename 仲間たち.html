@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>とろぽと愉快な仲間たちのwiki</title>
+  <meta name="robots" content="noindex">
+
+      <style type="text/css">
+          body { background-color: #595959; 
+
+      h1 {
+            font-size: 25px;
+    color: #ffffff;
+    border: 1px solid #ffffff;
+    padding-bottom: 0;
+    margin-bottom: 0;
+    padding: 15px 15px;
+
+      }
+      p {
+    color: #ffffff;
+    
+    
+}
+.sushi {
+  flex: 1;
+    margin-left: 0px;
+    padding-left: 10px; 
+    padding-right: 10px;
+    
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border: 1px solid #ffffff;
+    
+    
+}
+.omumu {
+        margin-right: 10px;
+    padding-left: 10px; 
+    padding-right: 10px;
+    
+    padding-top: 10px;
+    padding-bottom: 10px;
+    color: #ffffff;
+    width: 120px;
+    flex-shrink: 0; 
+    border: 1px solid #ffffff
+}
+a {
+    color: #FFD2A5;
+}
+.oi {
+    position: absolute;
+    bottom: 10px;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    color: #ffffff;
+}
+.fukui {
+    position: fixed;
+    bottom: 0;
+    left: 100px;
+    width: 100%;
+    display: block;
+    margin: 0;
+    padding: 0;
+    width: 150px; 
+        height: auto;
+}
+.toggle-btn {
+    background-color: #ffffff;
+    color: #000000;
+    padding: 8px 15px;
+    border: none;
+    font-weight: bold;
+    cursor: pointer;
+    margin: 5px 0;
+}
+
+.image-collapse {
+    display: none;
+    margin-top: 5px;
+    max-width: 100%;
+    width: 350px;
+    height: auto;  
+}
+
+.image-collapse.open {
+    display: block;
+}
+
+.image-collapse img {
+    max-width: 100%;
+    height: auto;
+}
+.azerbaijan {
+    flex: 1;
+    margin-top: 15px;
+    margin-left: 0px;
+    padding-left: 10px; 
+    padding-right: 10px;
+    color: #ffffff;
+    
+    padding-top: 10px;
+    padding-bottom: 10px;
+    border: 1px solid #ffffff;
+}
+
+
+
+</style>
+
+<link rel="icon" href="サイトアイコン.png" type="image/png">
+
+<link rel="apple-touch-icon" href="サイトアイコン.png">
+
+</head>
+
+<body>
+<h1 style="text-align: center;">■仲間たち</h1>
+<div style="display: flex;">
+<p class="omumu">メニュー<br><br>
+<a href="とろぽと愉快な仲間たちのwiki.html">・ホーム</a><br>
+<a href="とろぽについて.html">・とろぽについて</a>
+<br><a href="ギャラリー.html">・ギャラリー</a><br><a href="とろぽ史.html">・とろぽ史（おもな出来事）</a><br><br><a href="コメント欄.html">・コメント</a></p>
+<div class="azerbaijan">追加してほしい人物がいたら、コメントで報告してください！
+<br><br>
+<a href="芝政について.html">・芝政</a>
+<br>
+<a href="みあについて.html">・みあ</a>
+<br>
+<a href="ぱげについて.html">・ぱげ</a>
+    
+    
+<script>
+    function toggleNextImage(button) {
+        const container = button.nextElementSibling;
+        const icon = button.querySelector('.icon');
+        
+        container.classList.toggle('open');
+        
+        if (container.classList.contains('open')) {
+            icon.textContent = '-';
+        } else {
+            icon.textContent = '+';
+        }
+    }
+</script>
+
+</body>
+
+</html>
