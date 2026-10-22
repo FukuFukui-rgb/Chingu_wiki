@@ -4,74 +4,63 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+  
   <title>確認画面</title>
   <meta name="robots" content="noindex">
-
+  
   <style>
-  
-  
-          .fukui {
-        font-size: 20px;
-        color: #ffffff;
-        margin-bottom: 15px;
-        text-align: center;
+    .fukui {
+      font-size: 14px;
+      color: #ffffff;
+      margin-bottom: 10px;
+      text-align: center;
     }
+    
     body {
-        background-color: #595959;
-        color: #ffffff;
-                display: flex;
-        justify-content: center;
-        align-items: center;
-        flex-direction: column;
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        height: 100vh;
-        margin: 0;
-
+      background-color: #595959;
+      color: #ffffff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      height: 100vh;
+      margin: 0;
     }
     
     .miyagi {
-        font-size: 24px;
-        padding: 10px;
-        box-sizing: border-box;
-    }  
-      .yamagata {
-      font-size: 24px;
-      padding: 10px 20px;
+      font-size: 13px;
+      padding: 5px;
+      box-sizing: border-box;
+      width: 180px;
+    }
+    
+    .yamagata {
+      font-size: 13px;
+      padding: 4px 8px;
       cursor: pointer;
       background-color: #ffffff;
       color: #000000;
       box-sizing: border-box;
-      font-size: 22px;
-      padding: 8px 14px;
-      margin-left: 10px;
-
+      margin-left: 6px;
     }
-    .passcode_box {
-        display: flex;
-        align-items: center;
-    }
-
-
-    .error-text {
-        color: #ff0000;
-        font-size: 16px;
-        margin-top: 10px;
-        height: 20px;
-        text-align: center;
-    }
-
     
-</style>
-
-<link rel="icon" href="サイトアイコン.png" type="image/png">
-
-<link rel="apple-touch-icon" href="サイトアイコン.png">
-
-
+    .passcode_box {
+      display: flex;
+      align-items: center;
+    }
+    
+    .error-text {
+      color: #ff0000;
+      font-size: 12px;
+      margin-top: 8px;
+      height: 18px;
+      text-align: center;
+    }
+  </style>
+  
+  <link rel="icon" href="サイトアイコン.png" type="image/png">
+  <link rel="apple-touch-icon" href="サイトアイコン.png">
+  
 </head>
 
 <body>
@@ -79,38 +68,36 @@
   <p class="fukui">とろぽは？</p>
   
   <div class="passcode_box">
-<input type="text" id="password-input" class="miyagi" placeholder="パスコードを入力…">
-<button onclick="checkPassword()" class="yamagata">確認</button>
-</div>
-<p id="error-message" class="error-text"></p>
-
+    <input type="text" id="password-input" class="miyagi" placeholder="パスコードを入力…">
+    <button onclick="checkPassword()" class="yamagata">確認</button>
+  </div>
+  <p id="error-message" class="error-text"></p>
+  
 </body>
 
 <script>
-
-function checkPassword() {
-      const correctPassword = "ゲイ";
-      const inputVal = document.getElementById("password-input").value;
-      const errorMsg = document.getElementById("error-message");
-
-      if (inputVal === correctPassword) {
-        errorMsg.style.color = "#ffffff";
-        errorMsg.textContent = "パスコードの認証に成功しました。ページへ移動します。";
-
-                setTimeout(function() {
-          window.location.href = "とろぽと愉快な仲間たちのwiki.html";
-        }, 3000);
-
-      } else {
-        errorMsg.style.color = "#ff0000";
-        errorMsg.textContent = "パスコードが違います。入力し直してください。";
-
-        setTimeout(function() {
-          errorMsg.textContent = "";
-        }, 3000);
-      }
+  function checkPassword() {
+    const correctPassword = "ゲイ";
+    const inputVal = document.getElementById("password-input").value;
+    const errorMsg = document.getElementById("error-message");
+    
+    if (inputVal === correctPassword) {
+      errorMsg.style.color = "#ffffff";
+      errorMsg.textContent = "パスコードの認証に成功しました。ページへ移動します。";
+      
+      setTimeout(function() {
+        window.location.href = "とろぽと愉快な仲間たちのwiki.html";
+      }, 3000);
+      
+    } else {
+      errorMsg.style.color = "#ff0000";
+      errorMsg.textContent = "パスコードが違います。入力し直してください。";
+      
+      setTimeout(function() {
+        errorMsg.textContent = "";
+      }, 3000);
     }
-
+  }
 </script>
 
 </html>

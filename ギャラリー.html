@@ -9,224 +9,196 @@
   <meta name="robots" content="noindex">
 
       <style type="text/css">
-          body { background-color: #595959; 
-
+      body {
+          background-color: #595959;
+          margin: 0;
+          padding: 10px;
+          box-sizing: border-box;
+          display: flex;
+          justify-content: center;
+      }
+      .page-container {
+          zoom: 0.44;
+          width: 1000px;
+      }
       h1 {
-            font-size: 25px;
-    color: #ffffff;
-    border: 1px solid #ffffff;
-    padding-bottom: 0;
-    margin-bottom: 0;
-    padding: 15px 15px;
-
+          font-size: 25px;
+          color: #ffffff;
+          border: 1px solid #ffffff;
+          padding: 15px 15px;
+          margin-bottom: 0;
+          text-align: center;
       }
       p {
-    color: #ffffff;
-    
-    
-}
-.sushi {
-  flex: 1;
-    margin-left: 0px;
-    padding-left: 10px; 
-    padding-right: 10px;
-    
-    padding-top: 10px;
-    padding-bottom: 10px;
-    border: 1px solid #ffffff;
-    
-    
-}
-.omumu {
-        margin-right: 10px;
-    padding-left: 10px; 
-    padding-right: 10px;
-    
-    padding-top: 10px;
-    padding-bottom: 10px;
-    color: #ffffff;
-    width: 120px;
-    flex-shrink: 0; 
-    border: 1px solid #ffffff
-}
-a {
-    color: #FFD2A5;
-}
-.oi {
-    position: absolute;
-    bottom: 10px;
-    left: 0;
-    width: 100%;
-    text-align: center;
-    color: #ffffff;
-}
-.fukui {
-    position: fixed;
-    bottom: 0;
-    left: 100px;
-    width: 100%;
-    display: block;
-    margin: 0;
-    padding: 0;
-    width: 150px; 
-        height: auto;
-}
-.toggle-btn {
-    background-color: #ffffff;
-    color: #000000;
-    padding: 8px 15px;
-    border: none;
-    font-weight: bold;
-    cursor: pointer;
-    margin: 5px 0;
-}
+          color: #ffffff;
+      }
+      .sushi {
+          flex: 1;
+          margin-left: 0px;
+          padding-left: 10px; 
+          padding-right: 10px;
+          padding-top: 10px;
+          padding-bottom: 10px;
+          border: 1px solid #ffffff;
+      }
+      .omumu {
+          margin-right: 10px;
+          padding-left: 10px; 
+          padding-right: 10px;
+          padding-top: 10px;
+          padding-bottom: 10px;
+          color: #ffffff;
+          width: 120px;
+          flex-shrink: 0; 
+          border: 1px solid #ffffff;
+      }
+      a {
+          color: #FFD2A5;
+      }
+      .oi {
+          text-align: center;
+          color: #ffffff;
+          margin-top: 20px;
+      }
+      .fukui {
+          position: fixed;
+          bottom: 0;
+          left: 100px;
+          margin: 0;
+          padding: 0;
+          width: 150px; 
+          height: auto;
+      }
+      .toggle-btn {
+          background-color: #ffffff;
+          color: #000000;
+          padding: 8px 15px;
+          border: none;
+          font-weight: bold;
+          cursor: pointer;
+          margin: 5px 0;
+      }
 
-.image-collapse {
-    display: none;
-    margin-top: 5px;
-    max-width: 100%;
-    width: 350px;
-    height: auto;  
-}
+      .image-collapse {
+          display: none;
+          margin-top: 5px;
+          max-width: 100%;
+          width: 350px;
+          height: auto;  
+      }
 
-.image-collapse.open {
-    display: block;
-}
+      .image-collapse.open {
+          display: block;
+      }
 
-.image-collapse img {
-    max-width: 100%;
-    height: auto;
-}
-.azerbaijan {
-    flex: 1;
-    margin-top: 15px;
-    margin-left: 0px;
-    padding-left: 10px; 
-    padding-right: 10px;
-    color: #ffffff;
-    
-    padding-top: 10px;
-    padding-bottom: 10px;
-    border: 1px solid #ffffff;
-}
-
-
-
-</style>
+      .image-collapse img {
+          max-width: 100%;
+          height: auto;
+      }
+      .azerbaijan {
+          flex: 1;
+          margin-top: 15px; /* 上枠との間隔をしっかり確保 */
+          margin-left: 0px;
+          padding-left: 10px; 
+          padding-right: 10px;
+          color: #ffffff;
+          padding-top: 10px;
+          padding-bottom: 10px;
+          border: 1px solid #ffffff;
+      }
+      .content-box {
+          display: flex;
+          align-items: flex-start; /* 左メニューと右枠の上の位置を揃える */
+      }
+      </style>
 
 <link rel="icon" href="サイトアイコン.png" type="image/png">
-
 <link rel="apple-touch-icon" href="サイトアイコン.png">
 
 </head>
 
 <body>
-<h1 style="text-align: center;">■ギャラリー</h1>
-<div style="display: flex;">
-<p class="omumu">メニュー<br><br>
-<a href="とろぽと愉快な仲間たちのwiki.html">・ホーム</a><br><a href="とろぽについて.html">・とろぽについて</a><br><a href="仲間たち.html">・仲間たち</a><br><a href="とろぽ史.html">・とろぽ史（おもな出来事）</a><br><br><a href="コメント欄.html">・コメント</a></p>
-<div class="azerbaijan">追加してほしい画像があったらコメントで報告してくださいね。<br><br><br>
-    <button class="toggle-btn" onclick="toggleNextImage(this)">
-        <span class="icon">+</span> 芝政からのキス
-    </button>
-    <div class="image-collapse">
-        <img src="芝政からのキス.png" alt="芝政からのキス">
-    </div>
-    <br>
-    <button class="toggle-btn" onclick="toggleNextImage(this)">
-        <span class="icon">+</span> キュアゲイとろぽ
-    </button>
-    <div class="image-collapse">
-        <img src="キュアゲイとろぽ.png" alt="キュアゲイとろぽ">
-    </div>
-    <br>
-    <button class="toggle-btn" onclick="toggleNextImage(this)">
-        <span class="icon">+</span> アイドルのトーク
-    </button>
-    <div class="image-collapse">
-        <img src="アイドルのトーク.png" alt="アイドルのトーク">
-    </div>
-    <br>
-    <button class="toggle-btn" onclick="toggleNextImage(this)">
-        <span class="icon">+</span> みんなのカラオケ(1)
-    </button>
-    <div class="image-collapse">
-        <img src="みんなのカラオケ(1).png" alt="みんなのカラオケ(1)">
-    </div>
-    <br>
-    <button class="toggle-btn" onclick="toggleNextImage(this)">
-        <span class="icon">+</span> みんなのカラオケ(2)
-    </button>
-    <div class="image-collapse">
-        <img src="みんなのカラオケ(2).png" alt="みんなのカラオケ(2)">
-    </div>
-    <br>
-    <button class="toggle-btn" onclick="toggleNextImage(this)">
-        <span class="icon">+</span> みんなで都道府県ごっこ
-    </button>
-    <div class="image-collapse">
-        <img src="みんなで都道府県ごっこ.png" alt="みんなで都道府県ごっこ">
-    </div>
-    <br>
-    <button class="toggle-btn" onclick="toggleNextImage(this)">
-        <span class="icon">+</span> ごめんね──…。
-    </button>
-    <div class="image-collapse">
-        <img src="ごめんね──…。.png" alt="ごめんね──…。">
-    </div>
-    <br>
-    <button class="toggle-btn" onclick="toggleNextImage(this)">
-        <span class="icon">+</span> いつしかの記憶
-    </button>
-    <div class="image-collapse">
-        <img src="いつしかの記憶.png" alt="いつしかの記憶">
-    </div>
-    <br>
-    <button class="toggle-btn" onclick="toggleNextImage(this)">
-        <span class="icon">+</span> ありのままのとろぽ
-    </button>
-    <div class="image-collapse">
-        <img src="ありのままのとろぽ.png" alt="ありのままのとろぽ">
-    </div>
-    <br>
-    <button class="toggle-btn" onclick="toggleNextImage(this)">
-        <span class="icon">+</span> あおてぃん！？(1)
-    </button>
-    <div class="image-collapse">
-        <img src="あおてぃん！？(1).png" alt="あおてぃん！？(1)">
-    </div>
-    <br>
-    <button class="toggle-btn" onclick="toggleNextImage(this)">
-        <span class="icon">+</span> あおてぃん！？(2)
-    </button>
-    <div class="image-collapse">
-        <img src="あおてぃん！？(2).png" alt="あおてぃん！？(2)">
-    </div>
-    <br>
-    <button class="toggle-btn" onclick="toggleNextImage(this)">
-        <span class="icon">+</span> あおてぃん！？(3)
-    </button>
-    <div class="image-collapse">
-        <img src="あおてぃん！？(3).png" alt="あおてぃん！？(3)">
-    </div>
-    <br>
-    
-    
-<script>
-    function toggleNextImage(button) {
-        const container = button.nextElementSibling;
-        const icon = button.querySelector('.icon');
-        
-        container.classList.toggle('open');
-        
-        if (container.classList.contains('open')) {
-            icon.textContent = '-';
-        } else {
-            icon.textContent = '+';
-        }
-    }
-</script>
 
-</body>
-
-</html>
+  <div class="page-container">
+    <h1 style="text-align: center;">■ギャラリー</h1>
+    <div class="content-box">
+      <p class="omumu" style="margin-top: 15px;">メニュー<br><br>
+        <a href="とろぽと愉快な仲間たちのwiki.html">・ホーム</a><br>
+        <a href="とろぽについて.html">・とろぽについて</a><br>
+        <a href="仲間たち.html">・仲間たち</a><br>
+        <a href="とろぽ史.html">・とろぽ史（おもな出来事）</a><br><br>
+        <a href="コメント欄.html">・コメント</a>
+      </p>
+      
+      <div class="azerbaijan">追加してほしい画像があったらコメントで報告してくださいね。<br><br><br>
+        <button class="toggle-btn" onclick="toggleNextImage(this)">
+            <span class="icon">+</span> 芝政からのキス
+        </button>
+        <div class="image-collapse">
+            <img src="芝政からのキス.png" alt="芝政からのキス">
+        </div>
+        <br>
+        <button class="toggle-btn" onclick="toggleNextImage(this)">
+            <span class="icon">+</span> キュアゲイとろぽ
+        </button>
+        <div class="image-collapse">
+            <img src="キュアゲイとろぽ.png" alt="キュアゲイとろぽ">
+        </div>
+        <br>
+        <button class="toggle-btn" onclick="toggleNextImage(this)">
+            <span class="icon">+</span> アイドルのトーク
+        </button>
+        <div class="image-collapse">
+            <img src="アイドルのトーク.png" alt="アイドルのトーク">
+        </div>
+        <br>
+        <button class="toggle-btn" onclick="toggleNextImage(this)">
+            <span class="icon">+</span> みんなのカラオケ(1)
+        </button>
+        <div class="image-collapse">
+            <img src="みんなのカラオケ(1).png" alt="みんなのカラオケ(1)">
+        </div>
+        <br>
+        <button class="toggle-btn" onclick="toggleNextImage(this)">
+            <span class="icon">+</span> みんなのカラオケ(2)
+        </button>
+        <div class="image-collapse">
+            <img src="みんなのカラオケ(2).png" alt="みんなのカラオケ(2)">
+        </div>
+        <br>
+        <button class="toggle-btn" onclick="toggleNextImage(this)">
+            <span class="icon">+</span> みんなで都道府県ごっこ
+        </button>
+        <div class="image-collapse">
+            <img src="みんなで都道府県ごっこ.png" alt="みんなで都道府県ごっこ">
+        </div>
+        <br>
+        <button class="toggle-btn" onclick="toggleNextImage(this)">
+            <span class="icon">+</span> ごめんね──…。
+        </button>
+        <div class="image-collapse">
+            <img src="ごめんね──…。.png" alt="ごめんね──…。">
+        </div>
+        <br>
+        <button class="toggle-btn" onclick="toggleNextImage(this)">
+            <span class="icon">+</span> いつしかの記憶
+        </button>
+        <div class="image-collapse">
+            <img src="いつしかの記憶.png" alt="いつしかの記憶">
+        </div>
+        <br>
+        <button class="toggle-btn" onclick="toggleNextImage(this)">
+            <span class="icon">+</span> ありのままのとろぽ
+        </button>
+        <div class="image-collapse">
+            <img src="ありのままのとろぽ.png" alt="ありのままのとろぽ">
+        </div>
+        <br>
+        <button class="toggle-btn" onclick="toggleNextImage(this)">
+            <span class="icon">+</span> あおてぃん！？(1)
+        </button>
+        <div class="image-collapse">
+            <img src="あおてぃん！？(1).png" alt="あおてぃん！？(1)">
+        </div>
+        <br>
+        <button class="toggle-btn" onclick="toggleNext

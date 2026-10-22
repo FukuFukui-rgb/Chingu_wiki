@@ -3,7 +3,7 @@
 
 <head>
   <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <title>とろぽと愉快な仲間たちのwiki</title>
   <meta name="robots" content="noindex">
@@ -13,14 +13,24 @@
   <style type="text/css">
     body { 
       background-color: #595959;
-      margin: 8px;
+      margin: 0;
+      padding: 10px;
+      box-sizing: border-box;
+      display: flex;
+      justify-content: center;
+    }
+    .page-container {
+      zoom: 0.44;
+      width: 1000px;
     }
     h1 {
       font-size: 25px;
       color: #ffffff;
       border: 1px solid #ffffff;
       padding: 15px 15px;
-      margin-bottom: 10px;
+      margin-top: 0;
+      margin-bottom: 0;
+      text-align: center;
     }
     p {
       color: #ffffff;
@@ -42,6 +52,7 @@
       flex-shrink: 0; 
       border: 1px solid #ffffff;
       box-sizing: border-box;
+      margin-top: 15px;
     }
     a {
       color: #FFD2A5;
@@ -176,6 +187,11 @@
       border: none;
       cursor: pointer;
     }
+    .content-box {
+      display: flex;
+      margin-top: 15px;
+      align-items: flex-start;
+    }
   </style>
 
   <link rel="icon" href="サイトアイコン.png" type="image/png">
@@ -184,44 +200,44 @@
 
 <body>
 
-  <h1 style="text-align: center;">■コメント</h1>
+  <div class="page-container">
+    <h1 style="text-align: center;">■コメント</h1>
 
-  <div style="display: flex;">
-    
-    <p class="omumu">メニュー<br><br>
-      <a href="とろぽと愉快な仲間たちのwiki.html">・ホーム</a><br>
-      <a href="とろぽについて.html">・とろぽについて</a><br>
-      <a href="仲間たち.html">・仲間たち</a><br>
-      <a href="ギャラリー.html">・ギャラリー</a><br>
-      <a href="とろぽ史.html">・とろぽ史（おもな出来事）</a>
-    </p>
+    <div class="content-box">
+      <p class="omumu">メニュー<br><br>
+        <a href="とろぽと愉快な仲間たちのwiki.html">・ホーム</a><br>
+        <a href="とろぽについて.html">・とろぽについて</a><br>
+        <a href="仲間たち.html">・仲間たち</a><br>
+        <a href="ギャラリー.html">・ギャラリー</a><br>
+        <a href="とろぽ史.html">・とろぽ史（おもな出来事）</a>
+      </p>
 
-    <div class="sushi">
-      
-      <div id="comment-list"></div>
-
-      <div class="comment-form-box">
-        <div class="form-group">
-          <input type="text" id="input-name" placeholder="お名前（必須）" oninput="checkForm()">
-        </div>
-        <div class="form-group">
-          <textarea id="input-text" placeholder="コメント（必須）" rows="4" oninput="checkForm()"></textarea>
-        </div>
+      <div class="sushi">
         
-        <div class="form-group">
-          <input type="file" id="input-image" accept="image/*" style="display:none;" onchange="previewImage(this)">
-          <button type="button" onclick="document.getElementById('input-image').click()" class="image-upload-btn"> 画像を選択 (任意/1枚まで)</button>
-          <span id="image-name" class="image-name-text"></span>
-          <button type="button" id="clear-image-btn" onclick="clearImage()" class="image-clear-btn">✕ 添付を削除</button>
+        <div id="comment-list"></div>
+
+        <div class="comment-form-box">
+          <div class="form-group">
+            <input type="text" id="input-name" placeholder="お名前（必須）" oninput="checkForm()">
+          </div>
+          <div class="form-group">
+            <textarea id="input-text" placeholder="コメント（必須）" rows="4" oninput="checkForm()"></textarea>
+          </div>
+          
+          <div class="form-group">
+            <input type="file" id="input-image" accept="image/*" style="display:none;" onchange="previewImage(this)">
+            <button type="button" onclick="document.getElementById('input-image').click()" class="image-upload-btn"> 画像を選択 (任意/1枚まで)</button>
+            <span id="image-name" class="image-name-text"></span>
+            <button type="button" id="clear-image-btn" onclick="clearImage()" class="image-clear-btn">✕ 添付を削除</button>
+          </div>
+
+          <div class="form-submit">
+            <button id="submit-btn" class="submit-btn" onclick="handleSubmit()" disabled>コメントする</button>
+          </div>
         </div>
 
-        <div class="form-submit">
-          <button id="submit-btn" class="submit-btn" onclick="handleSubmit()" disabled>コメントする</button>
-        </div>
       </div>
-
     </div>
-
   </div>
 
   <script>
@@ -380,8 +396,6 @@
       .subscribe();
 
     loadComments();
-
-
   </script>
 
 </body>
