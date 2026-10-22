@@ -9,7 +9,6 @@
   <meta name="robots" content="noindex">
   <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 
-
   <style type="text/css">
     body { 
       background-color: #595959;
@@ -82,6 +81,16 @@
       margin-bottom: 8px;
       white-space: pre-wrap;
       word-break: break-all;
+    }
+    .c-image {
+      margin-bottom: 8px;
+    }
+    .c-image img {
+      max-width: 300px;
+      max-height: 300px;
+      border-radius: 4px;
+      border: 1px solid #777;
+      display: block;
     }
     .c-actions {
       text-align: right;
@@ -245,11 +254,38 @@
     const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InR3eHlkcmFmYmR2eGp3bWNpeXJoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTI1ODUzNzMsImV4cCI6MjEwODE2MTM3M30.ke5MVDspDbKX2EnuYpfwe0OhfaaceGBqW5bBct40-Is';
 
     const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+    
+    const ADMIN_PASSWORD = '좋아요_후쿠이'; 
+    
     var editingCommentId = null;
 
     window.onload = function() {
       loadComments();
     };
+
+    function getMyKeys() {
+      return JSON.parse(localStorage.getItem('my_comment_keys') || '{}');
+    }
+    function saveMyKey(id, key) {
+      const keys = getMyKeys();
+      keys[id] = key;
+      localStorage.setItem('my_comment_keys', JSON.stringify(keys));
+    }
+
+    // ブラウザごとに固定の8桁ランダム英数字（大文字なし）を取得・生成する関数
+    function getBrowserAuthorId() {
+      let storedId = localStorage.getItem('browser_author_id');
+      if (!storedId) {
+        const chars = 'abcdefghijklmnopqrstuvwxyz0123456789';
+        let result = '';
+        for (let i = 0; i < 8; i++) {
+          result += chars.charAt(Math.floor(Math.random() * chars.length));
+        }
+        localStorage.setItem('browser_author_id', result);
+        storedId = result;
+      }
+      return storedId;
+    }
 
     async function loadComments() {
       const { data, error } = await supabaseClient
@@ -271,22 +307,55 @@
       if (!commentList) return;
       if (document.getElementById(`comment-${commentData.id}`)) return;
 
+      const myKeys = getMyKeys();
+      const isMyComment = !!myKeys[commentData.id];
+
+      let actionsHtml = '';
+      if (isMyComment) {
+        actionsHtml = `
+          <span class="action-link" onclick="startEdit(${commentData.id}, '${escapeHtml(commentData.name || '')}', '${escapeHtml(commentData.text || '')}')">編集</span>
+          <span class="action-link" onclick="confirmDelete(${commentData.id})">削除</span>
+        `;
+      } else {
+        actionsHtml = `
+          <span class="action-link" onclick="confirmAdminDelete(${commentData.id})">削除</span>
+        `;
+      }
+
+      let imageHtml = '';
+      if (commentData.image_url) {
+        imageHtml = `
+          <div class="c-image">
+            <img src="${escapeHtml(commentData.image_url)}" alt="添付画像">
+          </div>
+        `;
+      }
+
+      const displayId = commentData.comment_id || commentData.id;
+
       const commentHtml = `
         <div class="comment-item" id="comment-${commentData.id}">
           <div class="comment-info">
-            <span class="c-name">${commentData.name || '名無し'}</span>
-            <span class="c-id">ID:${commentData.id}</span>
+            <span class="c-name">${escapeHtml(commentData.name || '名無し')}</span>
+            <span class="c-id">ID:${escapeHtml(displayId)}</span>
             <span class="c-time">${commentData.created_at ? new Date(commentData.created_at).toLocaleString() : ''}</span>
           </div>
-          <div class="c-text">${commentData.text || ''}</div>
+          <div class="c-text">${escapeHtml(commentData.text || '')}</div>
+          ${imageHtml}
           <div class="c-actions">
-            <span class="action-link" onclick="startEdit(${commentData.id}, '${commentData.name || ''}', '${commentData.text || ''}')">編集</span>
-            <span class="action-link" onclick="confirmDelete(${commentData.id})">削除</span>
+            ${actionsHtml}
           </div>
           <hr class="comment-line">
         </div>
       `;
       commentList.insertAdjacentHTML('beforeend', commentHtml);
+    }
+
+    function escapeHtml(str) {
+      if (!str) return '';
+      return String(str).replace(/[&<> '"]/g, function(m) {
+        return { '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' }[m];
+      });
     }
 
     function checkForm() {
@@ -333,7 +402,7 @@
     }
 
     async function confirmDelete(commentId) {
-      if (confirm("本当に削除しますか？")) {
+      if (confirm("自分のコメントを削除しますか？")) {
         const { error } = await supabaseClient
           .from('comments')
           .delete()
@@ -343,6 +412,33 @@
           const target = document.getElementById(`comment-${commentId}`);
           if (target) target.remove();
           alert("削除しました。");
+        } else {
+          alert("削除に失敗しました。");
+        }
+      }
+    }
+
+    async function confirmAdminDelete(commentId) {
+      const inputPass = prompt("管理者用パスワードを入力してください：");
+      if (inputPass === null) return;
+
+      if (inputPass !== ADMIN_PASSWORD) {
+        alert("パスワードが違います。削除権限がありません。");
+        return;
+      }
+
+      if (confirm(`ID:${commentId} のコメントを削除しますか？`)) {
+        const { error } = await supabaseClient
+          .from('comments')
+          .delete()
+          .eq('id', commentId);
+
+        if (!error) {
+          const target = document.getElementById(`comment-${commentId}`);
+          if (target) target.remove();
+          alert("削除しました。");
+        } else {
+          alert("削除に失敗しました。");
         }
       }
     }
@@ -350,20 +446,65 @@
     async function handleSubmit() {
       var nameVal = document.getElementById('input-name').value;
       var textVal = document.getElementById('input-text').value;
+      var imageFile = document.getElementById('input-image').files[0];
+      var imageUrl = null;
+
+      if (imageFile) {
+        const fileExt = imageFile.name.split('.').pop();
+        const fileName = `${Date.now()}_${Math.random().toString(36).substring(2)}.${fileExt}`;
+        const filePath = `${fileName}`;
+
+        const { error: uploadError } = await supabaseClient.storage
+          .from('comment-images')
+          .upload(filePath, imageFile);
+
+        if (uploadError) {
+          alert("画像のアップロードに失敗しました");
+          return;
+        }
+
+        const { data: publicUrlData } = supabaseClient.storage
+          .from('comment-images')
+          .getPublicUrl(filePath);
+
+        imageUrl = publicUrlData.publicUrl;
+      }
 
       if (editingCommentId === null) {
-        const { error } = await supabaseClient
-          .from('comments')
-          .insert([{ name: nameVal, text: textVal }]);
+        const editKey = Math.random().toString(36).substring(2);
+        const fixedBrowserId = getBrowserAuthorId(); // 固定の8桁ランダムID
+        
+        const insertData = { 
+          name: nameVal, 
+          text: textVal,
+          comment_id: fixedBrowserId 
+        };
+        if (imageUrl) {
+          insertData.image_url = imageUrl;
+        }
 
-        if (error) {
+        const { data, error } = await supabaseClient
+          .from('comments')
+          .insert([insertData])
+          .select();
+
+        if (error || !data) {
           alert("送信に失敗しました");
           return;
         }
+
+        if (data && data[0]) {
+          saveMyKey(data[0].id, editKey);
+        }
       } else {
+        const updateData = { name: nameVal, text: textVal };
+        if (imageUrl) {
+          updateData.image_url = imageUrl;
+        }
+
         const { error } = await supabaseClient
           .from('comments')
-          .update({ name: nameVal, text: textVal })
+          .update(updateData)
           .eq('id', editingCommentId);
 
         if (!error) {
@@ -372,9 +513,20 @@
           if (target) {
             target.querySelector('.c-name').textContent = nameVal;
             target.querySelector('.c-text').textContent = textVal;
+            if (imageUrl) {
+              let imgContainer = target.querySelector('.c-image');
+              if (imgContainer) {
+                imgContainer.querySelector('img').src = imageUrl;
+              } else {
+                const textElem = target.querySelector('.c-text');
+                textElem.insertAdjacentHTML('afterend', `<div class="c-image"><img src="${escapeHtml(imageUrl)}" alt="添付画像"></div>`);
+              }
+            }
           }
           editingCommentId = null;
           document.getElementById('submit-btn').textContent = 'コメントする';
+        } else {
+          alert("更新に失敗しました。");
         }
       }
       
