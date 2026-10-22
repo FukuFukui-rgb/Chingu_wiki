@@ -201,4 +201,39 @@
             <img src="あおてぃん！？(1).png" alt="あおてぃん！？(1)">
         </div>
         <br>
-        <button class="toggle-btn" onclick="toggleNext
+        <button class="toggle-btn" onclick="toggleNextImage(this)">
+            <span class="icon">+</span> あおてぃん！？(2)
+        </button>
+        <div class="image-collapse">
+            <img src="あおてぃん！？(2).png" alt="あおてぃん！？(2)">
+        </div>
+        <br>
+        <button class="toggle-btn" onclick="toggleNextImage(this)">
+            <span class="icon">+</span> あおてぃん！？(3)
+        </button>
+        <div class="image-collapse">
+            <img src="あおてぃん！？(3).png" alt="あおてぃん！？(3)">
+        </div>
+        <br>
+      </div>
+    </div>
+  </div>
+
+<script>
+    function toggleNextImage(button) {
+        const container = button.nextElementSibling;
+        const icon = button.querySelector('.icon');
+        
+        container.classList.toggle('open');
+        
+        if (container.classList.contains('open')) {
+            icon.textContent = '-';
+        } else {
+            icon.textContent = '+';
+        }
+    }
+</script>
+
+</body>
+
+</html>
