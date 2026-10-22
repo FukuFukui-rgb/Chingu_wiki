@@ -4,468 +4,100 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <title>とろぽと愉快な仲間たちのwiki</title>
+  
+  <title>確認画面</title>
   <meta name="robots" content="noindex">
-  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
-
-
-  <style type="text/css">
-    body { 
-      background-color: #595959;
-      margin: 0;
-      padding: 10px;
-      box-sizing: border-box;
-      display: flex;
-      justify-content: center;
-    }
-    .page-container {
-      zoom: 0.44;
-      width: 1000px;
-    }
-    h1 {
-      font-size: 25px;
+  
+  <style>
+    .fukui {
+      font-size: 14px;
       color: #ffffff;
-      border: 1px solid #ffffff;
-      padding: 15px 15px;
-      margin-top: 0;
-      margin-bottom: 0;
+      margin-bottom: 10px;
       text-align: center;
     }
-    p {
+    
+    body {
+      background-color: #595959;
       color: #ffffff;
-    }
-    .sushi {
-      flex: 1;
-      margin-left: 0px;
-      padding: 15px;
-      border: 1px solid #ffffff;
-      color: #ffffff;
-      box-sizing: border-box;
-      min-width: 0;
-    }
-    .omumu {
-      margin-right: 10px;
-      padding: 10px;
-      color: #ffffff;
-      width: 140px;
-      flex-shrink: 0; 
-      border: 1px solid #ffffff;
-      box-sizing: border-box;
-      margin-top: 15px;
-    }
-    a {
-      color: #FFD2A5;
-    }
-
-    .comment-item {
-      margin-bottom: 15px;
-    }
-    .comment-info {
-      font-size: 0.85rem;
-      margin-bottom: 8px;
-    }
-    .c-name {
-      font-weight: bold;
-      margin-right: 12px;
-    }
-    .c-id {
-      color: #ccc;
-      margin-right: 12px;
-      font-family: monospace;
-    }
-    .c-time {
-      color: #ccc;
-    }
-    .c-text {
-      font-size: 0.95rem;
-      margin-bottom: 8px;
-      white-space: pre-wrap;
-      word-break: break-all;
-    }
-    .c-actions {
-      text-align: right;
-      font-size: 0.85rem;
-      margin-bottom: 12px;
-    }
-    .action-link {
-      color: #fff;
-      cursor: pointer;
-      margin-left: 12px;
-      text-decoration: underline;
-    }
-    .comment-line {
-      border: none;
-      border-top: 1px dashed #aaa;
-      margin: 15px 0;
-    }
-
-    .comment-form-box {
-      margin-top: 25px;
-      padding-top: 15px;
-      border-top: 1px solid #888;
-      width: 100%;
-      box-sizing: border-box;
-    }
-    .form-group {
-      margin-bottom: 15px;
-      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      height: 100vh;
+      margin: 0;
     }
     
-    .form-group input[type="text"] {
-      width: 220px;
-      max-width: 100%;
-      padding: 10px;
-      background: #ffffff;
-      border: 1px solid #777;
+    .miyagi {
+      font-size: 13px;
+      padding: 5px;
       box-sizing: border-box;
-      font-size: 0.95rem;
-      color: #000000;
-      display: block;
+      width: 180px;
     }
-
-    .form-group textarea {
-      width: 100%;
-      padding: 10px;
-      background: #ffffff;
-      border: 1px solid #777;
+    
+    .yamagata {
+      font-size: 13px;
+      padding: 4px 8px;
+      cursor: pointer;
+      background-color: #ffffff;
+      color: #000000;
       box-sizing: border-box;
-      font-size: 0.95rem;
-      color: #000000;
-      display: block;
-      resize: vertical;
+      margin-left: 6px;
     }
-
-    .image-upload-btn {
-      background: #333333;
-      color: #ffffff;
-      border: none;
-      padding: 8px 12px;
-      font-size: 0.85rem;
-      cursor: pointer;
-      border-radius: 4px;
-      display: inline-block;
-    }
-
-    .image-clear-btn {
-      background: #cc0000;
-      color: #ffffff;
-      border: none;
-      padding: 6px 10px;
-      font-size: 0.8rem;
-      cursor: pointer;
-      margin-left: 8px;
-      display: none;
-      border-radius: 4px;
-    }
-
-    .image-name-text {
-      font-size: 0.8rem;
-      color: #FFD2A5;
-      margin-left: 8px;
-    }
-    .form-submit {
-      text-align: right;
-      margin-top: 10px;
-    }
-
-    .submit-btn {
-      background-color: #888888;
-      color: #dddddd;
-      border: none;
-      padding: 10px 24px;
-      font-size: 0.95rem;
-      font-weight: bold;
-      cursor: not-allowed;
-      border-radius: 4px;
-      display: inline-block;
-    }
-
-    .submit-btn:not(:disabled) {
-      background-color: #489e00;
-      color: #ffffff;
-      border: none;
-      cursor: pointer;
-    }
-    .content-box {
+    
+    .passcode_box {
       display: flex;
-      margin-top: 15px;
-      align-items: flex-start;
+      align-items: center;
+    }
+    
+    .error-text {
+      color: #ff0000;
+      font-size: 12px;
+      margin-top: 8px;
+      height: 18px;
+      text-align: center;
     }
   </style>
-
+  
   <link rel="icon" href="サイトアイコン.png" type="image/png">
   <link rel="apple-touch-icon" href="サイトアイコン.png">
+  
 </head>
 
 <body>
-
-  <div class="page-container">
-    <h1 style="text-align: center;">■コメント</h1>
-
-    <div class="content-box">
-      <p class="omumu">メニュー<br><br>
-        <a href="とろぽと愉快な仲間たちのwiki.html">・ホーム</a><br>
-        <a href="とろぽについて.html">・とろぽについて</a><br>
-        <a href="仲間たち.html">・仲間たち</a><br>
-        <a href="ギャラリー.html">・ギャラリー</a><br>
-        <a href="とろぽ史.html">・とろぽ史（おもな出来事）</a>
-      </p>
-
-      <div class="sushi">
-        
-        <div id="comment-list"></div>
-
-        <div class="comment-form-box">
-          <div class="form-group">
-            <input type="text" id="input-name" placeholder="お名前（必須）" oninput="checkForm()">
-          </div>
-          <div class="form-group">
-            <textarea id="input-text" placeholder="コメント（必須）" rows="4" oninput="checkForm()"></textarea>
-          </div>
-          
-          <div class="form-group">
-            <input type="file" id="input-image" accept="image/*" style="display:none;" onchange="previewImage(this)">
-            <button type="button" onclick="document.getElementById('input-image').click()" class="image-upload-btn"> 画像を選択 (任意/1枚まで)</button>
-            <span id="image-name" class="image-name-text"></span>
-            <button type="button" id="clear-image-btn" onclick="clearImage()" class="image-clear-btn">✕ 添付を削除</button>
-          </div>
-
-          <div class="form-submit">
-            <button id="submit-btn" class="submit-btn" onclick="handleSubmit()" disabled>コメントする</button>
-          </div>
-        </div>
-
-      </div>
-    </div>
+  
+  <p class="fukui">とろぽは？</p>
+  
+  <div class="passcode_box">
+    <input type="text" id="password-input" class="miyagi" placeholder="パスコードを入力…">
+    <button onclick="checkPassword()" class="yamagata">確認</button>
   </div>
-
-  <script>
-    const SUPABASE_URL = 'https://twxydrafbdvxjwmciyrh.supabase.co';
-    const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InR3eHlkcmFmYmR2eGp3bWNpeXJoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTI1ODUzNzMsImV4cCI6MjEwODE2MTM3M30.ke5MVDspDbKX2EnuYpfwe0OhfaaceGBqW5bBct40-Is';
-
-    const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
-    
-    const ADMIN_PASSWORD = '좋아요_후쿠이'; 
-    
-    var editingCommentId = null;
-
-    window.onload = function() {
-      loadComments();
-    };
-
-    function getMyKeys() {
-      return JSON.parse(localStorage.getItem('my_comment_keys') || '{}');
-    }
-    function saveMyKey(id, key) {
-      const keys = getMyKeys();
-      keys[id] = key;
-      localStorage.setItem('my_comment_keys', JSON.stringify(keys));
-    }
-
-    async function loadComments() {
-      const { data, error } = await supabaseClient
-        .from('comments')
-        .select('*')
-        .order('id', { ascending: true });
-
-      if (data) {
-        const commentList = document.getElementById('comment-list');
-        commentList.innerHTML = '';
-        data.forEach(comment => {
-          addCommentToScreen(comment);
-        });
-      }
-    }
-
-    function addCommentToScreen(commentData) {
-      const commentList = document.getElementById('comment-list');
-      if (!commentList) return;
-      if (document.getElementById(`comment-${commentData.id}`)) return;
-
-      const myKeys = getMyKeys();
-      const isMyComment = !!myKeys[commentData.id];
-
-      let actionsHtml = '';
-      if (isMyComment) {
-        actionsHtml = `
-          <span class="action-link" onclick="startEdit(${commentData.id}, '${escapeHtml(commentData.name || '')}', '${escapeHtml(commentData.text || '')}')">編集</span>
-          <span class="action-link" onclick="confirmDelete(${commentData.id})">削除</span>
-        `;
-      } else {
-        actionsHtml = `
-          <span class="action-link" onclick="confirmAdminDelete(${commentData.id})">削除</span>
-        `;
-      }
-
-      const commentHtml = `
-        <div class="comment-item" id="comment-${commentData.id}">
-          <div class="comment-info">
-            <span class="c-name">${escapeHtml(commentData.name || '名無し')}</span>
-            <span class="c-id">ID:${commentData.id}</span>
-            <span class="c-time">${commentData.created_at ? new Date(commentData.created_at).toLocaleString() : ''}</span>
-          </div>
-          <div class="c-text">${escapeHtml(commentData.text || '')}</div>
-          <div class="c-actions">
-            ${actionsHtml}
-          </div>
-          <hr class="comment-line">
-        </div>
-      `;
-      commentList.insertAdjacentHTML('beforeend', commentHtml);
-    }
-
-    function escapeHtml(str) {
-      return str.replace(/[&<> '"]/g, function(m) {
-        return { '&': '&amp;', '<': '&lt;', '>': '&gt;', "'": '&#39;', '"': '&quot;' }[m];
-      });
-    }
-
-    function checkForm() {
-      var nameVal = document.getElementById('input-name').value;
-      var textVal = document.getElementById('input-text').value;
-      var btn = document.getElementById('submit-btn');
-      
-      if (nameVal.trim() !== '' && textVal.trim() !== '') {
-        btn.disabled = false;
-      } else {
-        btn.disabled = true;
-      }
-    }
-
-    function previewImage(input) {
-      var nameSpan = document.getElementById('image-name');
-      var clearBtn = document.getElementById('clear-image-btn');
-      if (input.files && input.files[0]) {
-        nameSpan.textContent = input.files[0].name;
-        clearBtn.style.display = 'inline-block';
-      } else {
-        clearImage();
-      }
-    }
-
-    function clearImage() {
-      var fileInput = document.getElementById('input-image');
-      var nameSpan = document.getElementById('image-name');
-      var clearBtn = document.getElementById('clear-image-btn');
-      fileInput.value = '';
-      nameSpan.textContent = '';
-      clearBtn.style.display = 'none';
-    }
-
-    function startEdit(commentId, currentName, currentText) {
-      editingCommentId = commentId;
-      document.getElementById('input-name').value = currentName;
-      document.getElementById('input-text').value = currentText;
-      
-      var btn = document.getElementById('submit-btn');
-      btn.textContent = '編集する';
-      btn.disabled = false;
-      document.getElementById('input-name').focus();
-    }
-
-    async function confirmDelete(commentId) {
-      if (confirm("自分のコメントを削除しますか？")) {
-        const { error } = await supabaseClient
-          .from('comments')
-          .delete()
-          .eq('id', commentId);
-
-        if (!error) {
-          const target = document.getElementById(`comment-${commentId}`);
-          if (target) target.remove();
-          alert("削除しました。");
-        } else {
-          alert("削除に失敗しました。");
-        }
-      }
-    }
-
-    async function confirmAdminDelete(commentId) {
-      const inputPass = prompt("管理者用パスワードを入力してください：");
-      if (inputPass === null) return;
-
-      if (inputPass !== ADMIN_PASSWORD) {
-        alert("パスワードが違います。削除権限がありません。");
-        return;
-      }
-
-      if (confirm(`ID:${commentId} のコメントを削除しますか？`)) {
-        const { error } = await supabaseClient
-          .from('comments')
-          .delete()
-          .eq('id', commentId);
-
-        if (!error) {
-          const target = document.getElementById(`comment-${commentId}`);
-          if (target) target.remove();
-          alert("削除しました。");
-        } else {
-          alert("削除に失敗しました。");
-        }
-      }
-    }
-
-    async function handleSubmit() {
-      var nameVal = document.getElementById('input-name').value;
-      var textVal = document.getElementById('input-text').value;
-
-      if (editingCommentId === null) {
-        const editKey = Math.random().toString(36).substring(2);
-        
-        const { data, error } = await supabaseClient
-          .from('comments')
-          .insert([{ name: nameVal, text: textVal }])
-          .select();
-
-        if (error || !data) {
-          alert("送信に失敗しました");
-          return;
-        }
-
-        if (data && data[0]) {
-          saveMyKey(data[0].id, editKey);
-        }
-      } else {
-        const { error } = await supabaseClient
-          .from('comments')
-          .update({ name: nameVal, text: textVal })
-          .eq('id', editingCommentId);
-
-        if (!error) {
-          alert("コメントを更新しました！");
-          const target = document.getElementById(`comment-${editingCommentId}`);
-          if (target) {
-            target.querySelector('.c-name').textContent = nameVal;
-            target.querySelector('.c-text').textContent = textVal;
-          }
-          editingCommentId = null;
-          document.getElementById('submit-btn').textContent = 'コメントする';
-        } else {
-          alert("更新に失敗しました。");
-        }
-      }
-      
-      document.getElementById('input-name').value = '';
-      document.getElementById('input-text').value = '';
-      clearImage();
-      checkForm();
-    }
-
-    supabaseClient
-      .channel('comment-changes')
-      .on(
-        'postgres_changes', 
-        { event: 'INSERT', schema: 'public', table: 'comments' }, 
-        (payload) => {
-          addCommentToScreen(payload.new);
-        }
-      )
-      .subscribe();
-
-    loadComments();
-  </script>
-
+  <p id="error-message" class="error-text"></p>
+  
 </body>
+
+<script>
+  function checkPassword() {
+    const correctPassword = "ゲイ";
+    const inputVal = document.getElementById("password-input").value;
+    const errorMsg = document.getElementById("error-message");
+    
+    if (inputVal === correctPassword) {
+      errorMsg.style.color = "#ffffff";
+      errorMsg.textContent = "パスコードの認証に成功しました。ページへ移動します。";
+      
+      setTimeout(function() {
+        window.location.href = "とろぽと愉快な仲間たちのwiki.html";
+      }, 3000);
+      
+    } else {
+      errorMsg.style.color = "#ff0000";
+      errorMsg.textContent = "パスコードが違います。入力し直してください。";
+      
+      setTimeout(function() {
+        errorMsg.textContent = "";
+      }, 3000);
+    }
+  }
+</script>
 
 </html>
