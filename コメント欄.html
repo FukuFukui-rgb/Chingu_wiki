@@ -224,8 +224,15 @@
   </div>
 
   <script>
-      const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+    const SUPABASE_URL = 'https://twxydrafbdvxjwmciyrh.supabase.co';
+    const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InR3eHlkcmFmYmR2eGp3bWNpeXJoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3OTI1ODUzNzMsImV4cCI6MjEwODE2MTM3M30.ke5MVDspDbKX2EnuYpfwe0OhfaaceGBqW5bBct40-Is';
+
+    const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
     var editingCommentId = null;
+
+    window.onload = function() {
+      loadComments();
+    };
 
     async function loadComments() {
       const { data, error } = await supabaseClient
